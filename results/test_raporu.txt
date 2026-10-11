@@ -1,4 +1,4 @@
-DC motor konum kontrolu - test raporu (11-Oct-2026 18:05:21)
+DC motor konum kontrolu - test raporu (11-Oct-2026 18:38:26)
 
 A: surtunmesiz           w_teori=1.5152  w_sim=1.5151 rad/s  bagil hata=1.95e-06  PASS
 B: Coulomb surtunmesi    w_teori=0.3030  w_sim=0.3030 rad/s  bagil hata=9.13e-07  PASS

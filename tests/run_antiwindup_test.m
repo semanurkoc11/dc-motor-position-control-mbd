@@ -1,5 +1,7 @@
 % run_antiwindup_test.m - REQ-01..05: anti-windup yontemlerinin karsilastirmasi, 50 rad adim
 % Modele dokunmaz: tum ayarlar SimulationInput ile yalnizca o kosu icin verilir.
+% Cizimler acik figur/eksen tutamaklariyla yapilir: test surerken baska pencereye
+% tiklamak grafigi bozmaz.
 model   = 'dc_motor_position_control';
 blk_pid = [model '/PID Controller'];
 load_system(model);
@@ -8,7 +10,7 @@ ref   = 50;
 modes = {'none', 'clamping', 'back-calculation'};
 Asim = zeros(3,1); Yerlesme = zeros(3,1); ess = zeros(3,1); umax = nan(3,1);
 
-figure; hold on; grid on;
+f = figure;  ax = axes(f);  hold(ax, 'on');  grid(ax, 'on');
 for i = 1:numel(modes)
     in = Simulink.SimulationInput(model);
     in = setModelParameter(in, 'StopTime', '20');
@@ -33,12 +35,12 @@ for i = 1:numel(modes)
         end
     end
 
-    plot(pos.Time, pos.Data, 'DisplayName', modes{i});
+    plot(ax, pos.Time, pos.Data, 'DisplayName', modes{i});
 end
-yline(ref, 'k--', 'DisplayName', 'referans');
-legend; xlabel('s'); ylabel('konum (rad)');
-title('Anti-windup yöntemlerinin karşılaştırması, 50 rad adım');
-exportgraphics(gcf, fullfile('results', 'antiwindup_karsilastirma.png'), 'Resolution', 200);
+yline(ax, ref, 'k--', 'DisplayName', 'referans');
+legend(ax); xlabel(ax, 's'); ylabel(ax, 'konum (rad)');
+title(ax, 'Anti-windup yöntemlerinin karşılaştırması, 50 rad adım');
+exportgraphics(f, fullfile('results', 'antiwindup_karsilastirma.png'), 'Resolution', 200);
 
 T = table(modes', Asim, Yerlesme, ess, umax, ...
     Asim < 5, Yerlesme < 5, ess < 0.5, umax <= 12 + 1e-6, ...

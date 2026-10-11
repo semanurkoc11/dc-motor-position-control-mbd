@@ -1,5 +1,7 @@
 % run_disturbance_sweep.m
 % REQ-06: Bozucu genliği taraması
+% Cizimler acik figur/eksen tutamaklariyla yapilir: test surerken baska pencereye
+% tiklamak grafigi bozmaz.
 
 model = 'dc_motor_position_control';
 
@@ -39,9 +41,10 @@ nBand = numel(bands);
 % Son sütun: Dış doyma farkı
 R = nan(nAmp, 3 + nBand + 1);
 
-figure;
-hold on;
-grid on;
+f  = figure;
+ax = axes(f);
+hold(ax, 'on');
+grid(ax, 'on');
 
 for i = 1:nAmp
     % Her tarama için yeni SimulationInput nesnesi
@@ -101,22 +104,22 @@ for i = 1:nAmp
     R(i, end) = max(abs(pd.Data(kk) - mv_interp(kk)));
 
     % Konum grafikleri
-    plot(t, pos.Data, ...
+    plot(ax, t, pos.Data, ...
         'DisplayName', sprintf('%g V', amps(i)));
 end
 
 % Referans ve bozucu zamanı çizgileri
-yline(ref, 'k--', 'HandleVisibility', 'off');
-xline(t_d, 'r:', 'HandleVisibility', 'off');
+yline(ax, ref, 'k--', 'HandleVisibility', 'off');
+xline(ax, t_d, 'r:', 'HandleVisibility', 'off');
 
-xlim([t_d - 2, t_end]);
-legend('Location', 'southwest');
-xlabel('Zaman (s)');
-ylabel('Konum (rad)');
-title('Bozucu genliği taraması');
+xlim(ax, [t_d - 2, t_end]);
+legend(ax, 'Location', 'southwest');
+xlabel(ax, 'Zaman (s)');
+ylabel(ax, 'Konum (rad)');
+title(ax, 'Bozucu genliği taraması');
 
 % Grafiği kaydet
-exportgraphics(gcf, fullfile('results', 'bozucu_taramasi.png'), 'Resolution', 200);
+exportgraphics(f, fullfile('results', 'bozucu_taramasi.png'), 'Resolution', 200);
 
 % Sonuç tablosu
 varNames = [{'Bozucu_V', 'MaxSapma_rad', 'FinalHata_rad'}, ...
