@@ -293,7 +293,7 @@ A load torque step is applied while the motor holds 50 rad. Two simple relations
 equations explain all results:
 
 ```math
-T_{L,\max} = \frac{K_t V_{supply}}{R} - T_c \qquad\qquad V_{hold} = \frac{T_L R}{K_t}
+T_{L,\max} = \frac{K_t V_{\text{supply}}}{R} - T_c \qquad\qquad V_{\text{hold}} = \frac{T_L R}{K_t}
 ```
 
 The first is the largest load the motor can still move against, the second the voltage needed to hold
