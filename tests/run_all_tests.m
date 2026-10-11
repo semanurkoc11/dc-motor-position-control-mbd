@@ -64,6 +64,16 @@ ozet.ms_yer    = max(ys_);
 fk_ = abs(T.Fark_s);  fk_(isnan(fk_)) = Inf;
 ozet.ms_fark   = max(fk_);
 ozet.ms_kalici = max(T.KaliciHata_rad);
+%% 6d) Ornekleme suresi taramasi (REQ-11)
+run_sample_time_test
+k10_ = T.Ts_ms <= 10 + 1e-9;                      % taahhut edilen aralik: Ts <= 10 ms
+ozet.ts10_ok   = all(T.PASS(k10_));
+ozet.ts10_asim = max(T.Asim_pct(k10_));
+ilk_ = find(~T.PASS, 1);                          % ilk FAIL olan Ts
+if isempty(ilk_),  ozet.ts_sinir = max(T.Ts_ms);  % hic FAIL yok: en az taranan en buyuk Ts
+elseif ilk_ == 1,  ozet.ts_sinir = 0;             % 1 ms bile FAIL
+else,              ozet.ts_sinir = T.Ts_ms(ilk_ - 1);
+end
 
 %% 7) Testler modeli degistirdi mi?
 pid_ = [mdl_ '/PID Controller'];  blk_ = [mdl_ '/dc_motor'];
@@ -107,6 +117,8 @@ Q = {
     'REQ-10b', 'Art arda adimlar: en uzun yerlesme (s)',   ozet.ms_yer,        '< 5',        ozet.ms_yer < 5
     'REQ-10c', 'Tek adima gore yerlesme farki (s)',        ozet.ms_fark,       '< 0.05',     ozet.ms_fark < 0.05
     'REQ-10d', 'Sonraki adimdan once hata (rad)',          ozet.ms_kalici,     '< 0.05',     ozet.ms_kalici < 0.05
+    'REQ-11a', 'Ts <= 10 ms: REQ-02..05 ve 07a (asim %)',   ozet.ts10_asim,     'hepsi PASS', ozet.ts10_ok
+    'REQ-11b', 'Gereksinimlerin saglandigi en buyuk Ts (ms)', ozet.ts_sinir,    '>= 50',      ozet.ts_sinir >= 50
     'ALTYAPI', 'Testler sonrasi model ayarlari degismedi',    NaN,                'evet',       ozet.model_temiz };
 
 fprintf('\n======================= GEREKSINIM OZETI =======================\n');

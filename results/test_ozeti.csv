@@ -24,4 +24,6 @@ REQ-10a,"Art arda adimlar: en buyuk asim (%)",0.283406523789111,< 5,PASS
 REQ-10b,"Art arda adimlar: en uzun yerlesme (s)",4.556,< 5,PASS
 REQ-10c,"Tek adima gore yerlesme farki (s)",0.00300000000000056,< 0.05,PASS
 REQ-10d,"Sonraki adimdan once hata (rad)",0.0322083844161944,< 0.05,PASS
+REQ-11a,"Ts <= 10 ms: REQ-02..05 ve 07a (asim %)",0.315100141795344,hepsi PASS,PASS
+REQ-11b,"Gereksinimlerin saglandigi en buyuk Ts (ms)",100,>= 50,PASS
 ALTYAPI,"Testler sonrasi model ayarlari degismedi",NaN,evet,PASS
