@@ -47,9 +47,13 @@ flowchart LR
     ENC -->|"measured position (−)"| E
 ```
 
-| Top level | Plant (`dc_motor` subsystem) |
-|---|---|
-| ![Top-level model](docs/model_top_level.svg) | ![DC motor subsystem](docs/model_dc_motor.svg) |
+**Top-level model** (click to open full size)
+
+[![Top-level model](docs/model_top_level.svg)](docs/model_top_level.svg)
+
+**Plant: `dc_motor` subsystem** (click to open full size)
+
+[![DC motor subsystem](docs/model_dc_motor.svg)](docs/model_dc_motor.svg)
 
 ---
 
@@ -107,11 +111,17 @@ No test modifies or saves the model: every test sets its conditions through
 
 The motor is built from its physical equations rather than a library block:
 
-$$L\,\frac{di}{dt} = V - R\,i - K_b\,\omega$$
+```math
+L \frac{di}{dt} = V - R i - K_b \omega
+```
 
-$$J\,\frac{d\omega}{dt} = K_t\,i - B\,\omega - T_c\tanh\!\left(\frac{\omega}{\omega_\varepsilon}\right) - T_L$$
+```math
+J \frac{d\omega}{dt} = K_t i - B \omega - T_c \tanh\left(\frac{\omega}{\omega_\varepsilon}\right) - T_L
+```
 
-$$\frac{d\theta}{dt} = \omega$$
+```math
+\frac{d\theta}{dt} = \omega
+```
 
 | Parameter | Value | Unit | Note |
 |---|---|---|---|
@@ -211,7 +221,9 @@ With Coulomb friction added, the PID could overcome friction only slowly through
 The position crept towards the target and REQ-06b failed (0.017 rad). An error-based feed-forward
 term was added in parallel to the PID:
 
-$$u_{ff} = V_c\,\tanh\!\left(\frac{e}{e_0}\right), \qquad V_c = \frac{T_c\,R}{K_t} = 0.8\ \text{V}$$
+```math
+u_{ff} = V_c \tanh\left(\frac{e}{e_0}\right), \qquad V_c = \frac{T_c R}{K_t} = 0.8 \text{ V}
+```
 
 An error-based form was used because no velocity sensor is modelled and the reference is a step.
 The compensation uses **nominal** motor parameters, as a real controller would.
