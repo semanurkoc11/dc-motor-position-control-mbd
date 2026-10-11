@@ -56,6 +56,14 @@ ozet.yuk_kalici = max(T.KaliciHata_rad(w_));
 tp_ = T.Toparlanma_0p05_s(w_);  tp_(isnan(tp_)) = Inf;   % hic donmediyse FAIL olsun
 ozet.yuk_topar  = max(tp_);
 ozet.yer_enkotu = max(T.Yerlesme_s);
+%% 6c) Art arda adimlar (REQ-10)
+run_multistep_test
+ozet.ms_asim   = max(T.Asim_pct);
+ys_ = T.Yerlesme_s;  ys_(isnan(ys_)) = Inf;          % yerlesmediyse FAIL olsun
+ozet.ms_yer    = max(ys_);
+fk_ = abs(T.Fark_s);  fk_(isnan(fk_)) = Inf;
+ozet.ms_fark   = max(fk_);
+ozet.ms_kalici = max(T.KaliciHata_rad);
 
 %% 7) Testler modeli degistirdi mi?
 pid_ = [mdl_ '/PID Controller'];  blk_ = [mdl_ '/dc_motor'];
@@ -67,7 +75,8 @@ ozet.model_temiz = ...
     strcmp(get_param([mdl_ '/Load_Torque'], 'After'), '0') && ...
     strcmp(get_param(blk_, 'Tc'), 'motor.Tc') && ...
     strcmp(get_param([mdl_ '/Saturation'], 'UpperLimit'), 'ctrl.Vmax') && ...
-    strcmp(get_param([mdl_ '/Saturation'], 'LowerLimit'), '-ctrl.Vmax');
+    strcmp(get_param([mdl_ '/Saturation'], 'LowerLimit'), '-ctrl.Vmax') && ...
+    strcmp(get_param([mdl_ '/reference'], 'VariableName'), 'ref_prof');
 %% Ozet tablo
 Q = {
     'MODEL-A', 'Surtunmesiz kalici hiz, teoriye bagil hata',  ozet.val(1).hata,   '< 0.005',    ozet.val(1).ok
@@ -91,6 +100,10 @@ Q = {
     'REQ-09a', '0.4 N.m yuk, en kotu: maks. sapma (rad)',  ozet.yuk_sapma,     '<= 1',       ozet.yuk_sapma <= 1
     'REQ-09b', '0.4 N.m yuk, en kotu: kalici hata (rad)',  ozet.yuk_kalici,    '< 0.01',     ozet.yuk_kalici < 0.01
     'REQ-09c', '0.4 N.m yuk, en kotu: banda donus (s)',    ozet.yuk_topar,     '< 5',        ozet.yuk_topar < 5
+    'REQ-10a', 'Art arda adimlar: en buyuk asim (%)',      ozet.ms_asim,       '< 5',        ozet.ms_asim < 5
+    'REQ-10b', 'Art arda adimlar: en uzun yerlesme (s)',   ozet.ms_yer,        '< 5',        ozet.ms_yer < 5
+    'REQ-10c', 'Tek adima gore yerlesme farki (s)',        ozet.ms_fark,       '< 0.05',     ozet.ms_fark < 0.05
+    'REQ-10d', 'Sonraki adimdan once hata (rad)',          ozet.ms_kalici,     '< 0.05',     ozet.ms_kalici < 0.05
     'ALTYAPI', 'Testler sonrasi model ayarlari degismedi',    NaN,                'evet',       ozet.model_temiz };
 
 fprintf('\n======================= GEREKSINIM OZETI =======================\n');

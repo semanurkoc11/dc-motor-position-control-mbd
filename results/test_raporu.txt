@@ -1,4 +1,4 @@
-DC motor konum kontrolu - test raporu (11-Oct-2026 15:14:44)
+DC motor konum kontrolu - test raporu (11-Oct-2026 16:38:54)
 
 A: surtunmesiz           w_teori=1.5152  w_sim=1.5151 rad/s  bagil hata=1.95e-06  PASS
 B: Coulomb surtunmesi    w_teori=0.3030  w_sim=0.3030 rad/s  bagil hata=9.13e-07  PASS
@@ -146,6 +146,25 @@ max|pid_minus_dist - motor_voltage| = 0.0000 V (dis doyma etkisi)
     "Sicak + 11 V + Tc x1.5"     0.5           0.49792           0.55298            0.23254              NaN            4.6781      false
     "Sicak + 11 V + Tc x1.5"     0.6           0.49792            1.0522             1.0428              NaN            4.6781      false
 
+Referans profili [zaman konum]:
+     0    50
+    10    50
+    10    20
+    20    20
+    20    80
+    35    80
+
+1/3 bitti: 0 -> 50 rad
+2/3 bitti: 50 -> 20 rad
+3/3 bitti: 20 -> 80 rad
+    <strong>Baslangic_rad</strong>    <strong>Hedef_rad</strong>    <strong>Adim_rad</strong>    <strong>Asim_pct</strong>    <strong>Yerlesme_s</strong>    <strong>KaliciHata_rad</strong>    <strong>Yerlesme_tek_adim_s</strong>    <strong>Fark_s</strong>
+    <strong>_____________</strong>    <strong>_________</strong>    <strong>________</strong>    <strong>________</strong>    <strong>__________</strong>    <strong>______________</strong>    <strong>___________________</strong>    <strong>______</strong>
+
+          0             50           50       0.28003       4.032           0.032315             4.032                0
+         50             20          -30       0.26119       3.032           0.018075             3.035           -0.003
+         20             80           60       0.26458       4.555         0.00028505             4.557           -0.002
+
+Umax = 12.0000 V
 
 ======================= GEREKSINIM OZETI =======================
 MODEL-A   Surtunmesiz kalici hiz, teoriye bagil hata   1.946e-06  < 0.005    PASS
@@ -169,6 +188,10 @@ REQ-08    R, J +-%20: en kotu yerlesme (s)                 4.372  REQ02-05   PAS
 REQ-09a   0.4 N.m yuk, en kotu: maks. sapma (rad)         0.4162  <= 1       PASS
 REQ-09b   0.4 N.m yuk, en kotu: kalici hata (rad)       0.003652  < 0.01     PASS
 REQ-09c   0.4 N.m yuk, en kotu: banda donus (s)            4.408  < 5        PASS
+REQ-10a   Art arda adimlar: en buyuk asim (%)               0.28  < 5        PASS
+REQ-10b   Art arda adimlar: en uzun yerlesme (s)           4.555  < 5        PASS
+REQ-10c   Tek adima gore yerlesme farki (s)                0.003  < 0.05     PASS
+REQ-10d   Sonraki adimdan once hata (rad)                0.03232  < 0.05     PASS
 ALTYAPI   Testler sonrasi model ayarlari degismedi           NaN  evet       PASS
 -----------------------------------------------------------------
 GENEL SONUC: PASS

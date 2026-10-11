@@ -20,4 +20,8 @@ REQ-08,"R, J +-%20: en kotu yerlesme (s)",4.37213829904204,REQ02-05,PASS
 REQ-09a,"0.4 N.m yuk, en kotu: maks. sapma (rad)",0.416159056446872,<= 1,PASS
 REQ-09b,"0.4 N.m yuk, en kotu: kalici hata (rad)",0.0036515254850949,< 0.01,PASS
 REQ-09c,"0.4 N.m yuk, en kotu: banda donus (s)",4.408,< 5,PASS
+REQ-10a,"Art arda adimlar: en buyuk asim (%)",0.280028570087453,< 5,PASS
+REQ-10b,"Art arda adimlar: en uzun yerlesme (s)",4.555,< 5,PASS
+REQ-10c,"Tek adima gore yerlesme farki (s)",0.00300000000000011,< 0.05,PASS
+REQ-10d,"Sonraki adimdan once hata (rad)",0.0323151389065144,< 0.05,PASS
 ALTYAPI,"Testler sonrasi model ayarlari degismedi",NaN,evet,PASS
