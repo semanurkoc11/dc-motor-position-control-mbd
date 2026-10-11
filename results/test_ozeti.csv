@@ -4,10 +4,12 @@ MODEL-A2,"Durum-uzayi konum egrisi, bagil hata",0.000282915805761619,< 0.005,PAS
 MODEL-B,"Coulomb surtunmesi, bagil hata",9.1315734855324e-07,< 0.005,PASS
 MODEL-C,"Yuk torku girisi ve isareti, bagil hata",1.79638233980196e-06,< 0.005,PASS
 MODEL-D,"Ic denklemler, kontrolcu zinciri, enkoder",NaN,hepsi PASS,PASS
+MODEL-E,"Yuk altinda tutma voltaji T*R/KT, bagil hata",0.00483099031413678,< 0.01,PASS
 REQ-01,"Hedefe ulasma (yerlesme gerceklesir)",4.03259770655174,sonlu,PASS
 REQ-02,"Kalici hata (rad)",4.03000337030335e-05,< 0.5,PASS
 REQ-03,"Asim (%)",0.280028570087443,< 5,PASS
 REQ-04,"Yerlesme suresi (s)",4.03259770655174,< 5,PASS
+REQ-04w,"En kotu durumda yerlesme suresi (s)",4.67807045002459,< 5,PASS
 REQ-05,"Motor voltaji (V)",12,<= 12,PASS
 REQ-06a,"9 V bozucuda en buyuk sapma (rad)",0.51333717789025,<= 1,PASS
 REQ-06b,"3 V bozucu sonrasi kalici hata (rad)",1.67769513286526e-05,< 0.01,PASS
@@ -15,4 +17,7 @@ REQ-06c,"9 V bozucuda 0.05 rad bandina donus (s)",4.11,< 5,PASS
 REQ-07a,"Voltaj titresimi, enkoder+gurultu (V)",0.324491820042974,< 0.5,PASS
 REQ-07b,"Voltaj titresimi, gurultusuz enkoder (V)",0.00108341040486531,< 0.5,PASS
 REQ-08,"R, J +-%20: en kotu yerlesme (s)",4.37213829904204,REQ02-05,PASS
+REQ-09a,"0.4 N.m yuk, en kotu: maks. sapma (rad)",0.416159056446872,<= 1,PASS
+REQ-09b,"0.4 N.m yuk, en kotu: kalici hata (rad)",0.0036515254850949,< 0.01,PASS
+REQ-09c,"0.4 N.m yuk, en kotu: banda donus (s)",4.408,< 5,PASS
 ALTYAPI,"Testler sonrasi model ayarlari degismedi",NaN,evet,PASS

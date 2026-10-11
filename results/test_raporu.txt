@@ -1,4 +1,4 @@
-DC motor konum kontrolu - test raporu (09-Oct-2026 18:02:26)
+DC motor konum kontrolu - test raporu (11-Oct-2026 15:14:44)
 
 A: surtunmesiz           w_teori=1.5152  w_sim=1.5151 rad/s  bagil hata=1.95e-06  PASS
 B: Coulomb surtunmesi    w_teori=0.3030  w_sim=0.3030 rad/s  bagil hata=9.13e-07  PASS
@@ -94,6 +94,58 @@ max|pid_minus_dist - motor_voltage| = 0.0000 V (dis doyma etkisi)
     {'enk+gurultu, e0=0.01'     }    0.28003       4.0326        0.32449       1.0103      1.9493e-05      5.6097e-05     true 
     {'enk+gurultu, e0=0.02'     }    0.28015       4.0326        0.28061       0.8839       0.0013914       0.0015347     true 
 
+1/6 bitti: 0.1 N.m
+2/6 bitti: 0.2 N.m
+3/6 bitti: 0.4 N.m
+4/6 bitti: 0.6 N.m
+5/6 bitti: 0.7 N.m
+6/6 bitti: 0.8 N.m
+    <strong>Yuk_Nm</strong>    <strong>MaxSapma_rad</strong>    <strong>KaliciHata_rad</strong>    <strong>Toparlanma_0p05_s</strong>    <strong>Vmotor_olculen_V</strong>    <strong>Vmotor_teori_V</strong>
+    <strong>______</strong>    <strong>____________</strong>    <strong>______________</strong>    <strong>_________________</strong>    <strong>________________</strong>    <strong>______________</strong>
+
+     0.1        0.034895         0.0010825                0               1.6077               1.6     
+     0.2         0.11965         7.415e-06            3.848               3.2005               3.2     
+     0.4           0.334        3.1055e-05            3.862               6.4002               6.4     
+     0.6         0.55679        3.9662e-05            4.085                  9.6               9.6     
+     0.7         0.81167           0.42241              NaN                   12              11.2     
+     0.8          2.6498            2.5918              NaN                   12              12.8     
+
+ 1/16 bitti: Nominal                  0.3 N.m
+ 2/16 bitti: Nominal                  0.4 N.m
+ 3/16 bitti: Nominal                  0.5 N.m
+ 4/16 bitti: Nominal                  0.6 N.m
+ 5/16 bitti: Sicak motor              0.3 N.m
+ 6/16 bitti: Sicak motor              0.4 N.m
+ 7/16 bitti: Sicak motor              0.5 N.m
+ 8/16 bitti: Sicak motor              0.6 N.m
+ 9/16 bitti: Sicak + 11 V             0.3 N.m
+10/16 bitti: Sicak + 11 V             0.4 N.m
+11/16 bitti: Sicak + 11 V             0.5 N.m
+12/16 bitti: Sicak + 11 V             0.6 N.m
+13/16 bitti: Sicak + 11 V + Tc x1.5   0.3 N.m
+14/16 bitti: Sicak + 11 V + Tc x1.5   0.4 N.m
+15/16 bitti: Sicak + 11 V + Tc x1.5   0.5 N.m
+16/16 bitti: Sicak + 11 V + Tc x1.5   0.6 N.m
+             <strong>Kosul</strong>              <strong>Yuk_Nm</strong>    <strong>Kapasite_hesap_Nm</strong>    <strong>MaxSapma_rad</strong>    <strong>KaliciHata_rad</strong>    <strong>Toparlanma_0p05_s</strong>    <strong>Yerlesme_s</strong>    <strong>REQ09</strong>
+    <strong>________________________</strong>    <strong>______</strong>    <strong>_________________</strong>    <strong>____________</strong>    <strong>______________</strong>    <strong>_________________</strong>    <strong>__________</strong>    <strong>_____</strong>
+
+    "Nominal"                    0.3               0.7           0.22403         2.5001e-05            3.771            4.0326      true 
+    "Nominal"                    0.4               0.7             0.334         3.1055e-05            3.862            4.0326      true 
+    "Nominal"                    0.5               0.7           0.44508         3.7917e-05            3.974            4.0326      true 
+    "Nominal"                    0.6               0.7           0.55679         3.9662e-05            4.085            4.0326      true 
+    "Sicak motor"                0.3             0.575           0.29572         0.00081785            3.938            4.2597      true 
+    "Sicak motor"                0.4             0.575           0.43238         0.00082552            4.025            4.2597      true 
+    "Sicak motor"                0.5             0.575           0.56981         0.00083617            4.142            4.2597      true 
+    "Sicak motor"                0.6             0.575           0.81787            0.72688              NaN            4.2597      false
+    "Sicak + 11 V"               0.3           0.52292           0.29495         0.00081835            3.937            4.5196      true 
+    "Sicak + 11 V"               0.4           0.52292           0.43168         0.00082515            4.025            4.5196      true 
+    "Sicak + 11 V"               0.5           0.52292           0.56948         0.00084848            4.097            4.5196      true 
+    "Sicak + 11 V"               0.6           0.52292            1.3438             1.3288              NaN            4.5196      false
+    "Sicak + 11 V + Tc x1.5"     0.3           0.49792           0.28055          0.0036515            4.408            4.6781      true 
+    "Sicak + 11 V + Tc x1.5"     0.4           0.49792           0.41616           0.003623            4.338            4.6781      true 
+    "Sicak + 11 V + Tc x1.5"     0.5           0.49792           0.55298            0.23254              NaN            4.6781      false
+    "Sicak + 11 V + Tc x1.5"     0.6           0.49792            1.0522             1.0428              NaN            4.6781      false
+
 
 ======================= GEREKSINIM OZETI =======================
 MODEL-A   Surtunmesiz kalici hiz, teoriye bagil hata   1.946e-06  < 0.005    PASS
@@ -101,10 +153,12 @@ MODEL-A2  Durum-uzayi konum egrisi, bagil hata         0.0002829  < 0.005    PAS
 MODEL-B   Coulomb surtunmesi, bagil hata               9.132e-07  < 0.005    PASS
 MODEL-C   Yuk torku girisi ve isareti, bagil hata      1.796e-06  < 0.005    PASS
 MODEL-D   Ic denklemler, kontrolcu zinciri, enkoder          NaN  hepsi PASS PASS
+MODEL-E   Yuk altinda tutma voltaji T*R/KT, bagil hata   0.004831  < 0.01     PASS
 REQ-01    Hedefe ulasma (yerlesme gerceklesir)             4.033  sonlu      PASS
 REQ-02    Kalici hata (rad)                             4.03e-05  < 0.5      PASS
 REQ-03    Asim (%)                                          0.28  < 5        PASS
 REQ-04    Yerlesme suresi (s)                              4.033  < 5        PASS
+REQ-04w   En kotu durumda yerlesme suresi (s)              4.678  < 5        PASS
 REQ-05    Motor voltaji (V)                                   12  <= 12      PASS
 REQ-06a   9 V bozucuda en buyuk sapma (rad)               0.5133  <= 1       PASS
 REQ-06b   3 V bozucu sonrasi kalici hata (rad)         1.678e-05  < 0.01     PASS
@@ -112,6 +166,9 @@ REQ-06c   9 V bozucuda 0.05 rad bandina donus (s)           4.11  < 5        PAS
 REQ-07a   Voltaj titresimi, enkoder+gurultu (V)           0.3245  < 0.5      PASS
 REQ-07b   Voltaj titresimi, gurultusuz enkoder (V)      0.001083  < 0.5      PASS
 REQ-08    R, J +-%20: en kotu yerlesme (s)                 4.372  REQ02-05   PASS
+REQ-09a   0.4 N.m yuk, en kotu: maks. sapma (rad)         0.4162  <= 1       PASS
+REQ-09b   0.4 N.m yuk, en kotu: kalici hata (rad)       0.003652  < 0.01     PASS
+REQ-09c   0.4 N.m yuk, en kotu: banda donus (s)            4.408  < 5        PASS
 ALTYAPI   Testler sonrasi model ayarlari degismedi           NaN  evet       PASS
 -----------------------------------------------------------------
 GENEL SONUC: PASS

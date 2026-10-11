@@ -43,6 +43,19 @@ ozet.vac_gur = r_.Vac_V;  ozet.vtep_gur = r_.Vac_tepe_V;
 run_encoder_test
 r_ = T(strcmp(T.Durum, 'enkoder, e0=0.01'), :);
 ozet.vac_enk = r_.Vac_V;  ozet.vtep_enk = r_.Vac_tepe_V;
+%% 6b) Yuk torku: tutma voltaji (MODEL-E), en kotu durum (REQ-09, REQ-04w)
+run_load_torque_test
+w_ = T.Yuk_Nm <= 0.6 + 1e-9;    % motorun tasiyabildigi yukler
+ozet.tutma_hata = max(abs(T.Vmotor_olculen_V(w_) - T.Vmotor_teori_V(w_)) ./ T.Vmotor_teori_V(w_));
+
+run_load_worstcase
+w_ = strcmp(string(T.Kosul), 'Sicak + 11 V + Tc x1.5') & T.Yuk_Nm <= 0.4 + 1e-9;
+assert(nnz(w_) == 2, 'En kotu durum satirlari bulunamadi (0.3 ve 0.4 N.m bekleniyor)');
+ozet.yuk_sapma  = max(T.MaxSapma_rad(w_));
+ozet.yuk_kalici = max(T.KaliciHata_rad(w_));
+tp_ = T.Toparlanma_0p05_s(w_);  tp_(isnan(tp_)) = Inf;   % hic donmediyse FAIL olsun
+ozet.yuk_topar  = max(tp_);
+ozet.yer_enkotu = max(T.Yerlesme_s);
 
 %% 7) Testler modeli degistirdi mi?
 pid_ = [mdl_ '/PID Controller'];  blk_ = [mdl_ '/dc_motor'];
@@ -51,8 +64,10 @@ ozet.model_temiz = ...
     strcmp(get_param(pid_, 'AntiWindupMode'), 'back-calculation') && ...
     strcmp(get_param(pid_, 'N'), 'ctrl.N') && ...
     strcmp(get_param([mdl_ '/Voltage_Disturbance'], 'After'), '0') && ...
-    strcmp(get_param([mdl_ '/Load_Torque'], 'After'), '0');
-
+    strcmp(get_param([mdl_ '/Load_Torque'], 'After'), '0') && ...
+    strcmp(get_param(blk_, 'Tc'), 'motor.Tc') && ...
+    strcmp(get_param([mdl_ '/Saturation'], 'UpperLimit'), 'ctrl.Vmax') && ...
+    strcmp(get_param([mdl_ '/Saturation'], 'LowerLimit'), '-ctrl.Vmax');
 %% Ozet tablo
 Q = {
     'MODEL-A', 'Surtunmesiz kalici hiz, teoriye bagil hata',  ozet.val(1).hata,   '< 0.005',    ozet.val(1).ok
@@ -60,10 +75,12 @@ Q = {
     'MODEL-B', 'Coulomb surtunmesi, bagil hata',              ozet.val(2).hata,   '< 0.005',    ozet.val(2).ok
     'MODEL-C', 'Yuk torku girisi ve isareti, bagil hata',     ozet.val(3).hata,   '< 0.005',    ozet.val(3).ok
     'MODEL-D', 'Ic denklemler, kontrolcu zinciri, enkoder',   NaN,                'hepsi PASS', ozet.logs_ok
+    'MODEL-E', 'Yuk altinda tutma voltaji T*R/KT, bagil hata', ozet.tutma_hata, '< 0.01',  ozet.tutma_hata < 0.01
     'REQ-01',  'Hedefe ulasma (yerlesme gerceklesir)',        ozet.yerlesme,      'sonlu',      ~isnan(ozet.yerlesme)
     'REQ-02',  'Kalici hata (rad)',                           ozet.ess,           '< 0.5',      ozet.ess < 0.5
     'REQ-03',  'Asim (%)',                                    ozet.asim,          '< 5',        ozet.asim < 5
     'REQ-04',  'Yerlesme suresi (s)',                         ozet.yerlesme,      '< 5',        ozet.yerlesme < 5
+    'REQ-04w', 'En kotu durumda yerlesme suresi (s)',      ozet.yer_enkotu,    '< 5',        ozet.yer_enkotu < 5
     'REQ-05',  'Motor voltaji (V)',                           ozet.umax,          '<= 12',      ozet.umax <= 12 + 1e-6
     'REQ-06a', '9 V bozucuda en buyuk sapma (rad)',           ozet.sapma9,        '<= 1',       ozet.sapma9 <= 1
     'REQ-06b', '3 V bozucu sonrasi kalici hata (rad)',        ozet.dist_final,    '< 0.01',     ozet.dist_final < 0.01
@@ -71,6 +88,9 @@ Q = {
     'REQ-07a', 'Voltaj titresimi, enkoder+gurultu (V)',       ozet.vac_gur,       '< 0.5',      ozet.vac_gur < 0.5 && ozet.vtep_gur < 1.5
     'REQ-07b', 'Voltaj titresimi, gurultusuz enkoder (V)',    ozet.vac_enk,       '< 0.5',      ozet.vac_enk < 0.5 && ozet.vtep_enk < 1.5
     'REQ-08',  'R, J +-%20: en kotu yerlesme (s)',            ozet.param_max_yer, 'REQ02-05',   ozet.param_ok
+    'REQ-09a', '0.4 N.m yuk, en kotu: maks. sapma (rad)',  ozet.yuk_sapma,     '<= 1',       ozet.yuk_sapma <= 1
+    'REQ-09b', '0.4 N.m yuk, en kotu: kalici hata (rad)',  ozet.yuk_kalici,    '< 0.01',     ozet.yuk_kalici < 0.01
+    'REQ-09c', '0.4 N.m yuk, en kotu: banda donus (s)',    ozet.yuk_topar,     '< 5',        ozet.yuk_topar < 5
     'ALTYAPI', 'Testler sonrasi model ayarlari degismedi',    NaN,                'evet',       ozet.model_temiz };
 
 fprintf('\n======================= GEREKSINIM OZETI =======================\n');
