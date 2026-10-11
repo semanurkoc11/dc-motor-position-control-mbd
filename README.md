@@ -66,11 +66,11 @@ The motor is continuous-time; the controller (sample-and-hold, PID and friction 
 
 **Top-level model** (click to open full size)
 
-[![Top-level model](docs/model_top_level.svg)](docs/model_top_level.svg)
+[![Top-level model](docs/model_top_level.svg)](https://raw.githubusercontent.com/semanurkoc11/dc-motor-position-control-mbd/main/docs/model_top_level.svg)
 
 **Plant: `dc_motor` subsystem** (click to open full size)
 
-[![DC motor subsystem](docs/model_dc_motor.svg)](docs/model_dc_motor.svg)
+[![DC motor subsystem](docs/model_dc_motor.svg)](https://raw.githubusercontent.com/semanurkoc11/dc-motor-position-control-mbd/main/docs/model_dc_motor.svg)
 
 ---
 
