@@ -1,0 +1,117 @@
+DC motor konum kontrolu - test raporu (09-Oct-2026 18:02:26)
+
+A: surtunmesiz           w_teori=1.5152  w_sim=1.5151 rad/s  bagil hata=1.95e-06  PASS
+B: Coulomb surtunmesi    w_teori=0.3030  w_sim=0.3030 rad/s  bagil hata=9.13e-07  PASS
+C: yuk torku 0.02 N.m    w_teori=1.0303  w_sim=1.0303 rad/s  bagil hata=1.80e-06  PASS
+A: durum-uzayi           konum egrisi, bagil hata=2.83e-04  PASS
+MODEL DOGRULAMA: PASS
+Saturation cikisi = motor girisi     maxhata=0.00e+00  PASS
+R*i                                  maxhata=0.00e+00  PASS
+KB*w  (BACK_EMF)                     maxhata=0.00e+00  PASS
+KT*i  (TORQUE)                       maxhata=0.00e+00  PASS
+B*w   (FRICTION)                     maxhata=0.00e+00  PASS
+Coulomb = Tc*tanh(w/w_eps)           maxhata=0.00e+00  PASS
+Elektrik toplami V-Ri-emf            maxhata=1.78e-15  PASS
+di/dt = toplam / L                   maxhata=3.55e-15  PASS
+Mekanik toplami T-F-Coulomb-Yuk      maxhata=0.00e+00  PASS
+acc = toplam / J                     maxhata=3.55e-15  PASS
+Cikis konumu = Integrator2           maxhata=0.00e+00  PASS
+Hata = referans - olculen konum      maxhata=0.00e+00  PASS
+Kompanzasyon = Vc*tanh(e/e0)         maxhata=0.00e+00  PASS
+Kontrol cikisi = PID + kompanzasyon  maxhata=0.00e+00  PASS
+Bozucu toplami = kontrol - bozucu    maxhata=0.00e+00  PASS
+Saturation = sinirlanmis toplam      maxhata=0.00e+00  PASS
+Enkoder |olculen-gercek| = 4.50e-03 <= 6.77e-03  PASS
+Umax (motor voltaji) = 12.0000 V  PASS
+           <strong>Yontem</strong>           <strong>Asim_pct</strong>    <strong>Yerlesme_s</strong>     <strong>ess_rad</strong>      <strong>Umax_V</strong>    <strong>REQ03</strong>    <strong>REQ04</strong>    <strong>REQ02</strong>    <strong>REQ05</strong>
+    <strong>____________________</strong>    <strong>________</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>______</strong>    <strong>_____</strong>    <strong>_____</strong>    <strong>_____</strong>    <strong>_____</strong>
+
+    {'none'            }     80.225       13.335      0.00045151      12      false    false    true     true 
+    {'clamping'        }     1.7518       3.7754      7.1532e-05      12      true     true     true     true 
+    {'back-calculation'}    0.28003       4.0326        4.03e-05      12      true     true     true     true 
+
+En buyuk sapma = 0.103 rad
+Toparlanma (sapmanin %2 bandi) = 7.24 s
+Final konum hatasi (son 5 s ort.) = 0.00002 rad
+pid_out_V (son 5 s ort.) = 3.001 V (beklenen ~3 V)
+max|pid_out - pid_minus_dist - 3| = 0.0000 V (bozucu dogru mu?)
+max|pid_minus_dist - motor_voltage| = 0.0000 V (dis doyma etkisi)
+    <strong>Bozucu_V</strong>    <strong>MaxSapma_rad</strong>    <strong>FinalHata_rad</strong>    <strong>Toparlanma_0.05_rad_s</strong>    <strong>Toparlanma_0.01_rad_s</strong>    <strong>DisDoymaFarki_V</strong>
+    <strong>________</strong>    <strong>____________</strong>    <strong>_____________</strong>    <strong>_____________________</strong>    <strong>_____________________</strong>    <strong>_______________</strong>
+
+        3         0.10296         1.357e-05              4.084                    5.724                    0      
+        6         0.30523        3.1714e-05              3.906                    5.401                    0      
+        9         0.51334         3.882e-05               4.11                    5.578                    0      
+       11         0.65446         4.153e-05               4.24                    5.699                    0      
+       13          1.2994            1.2994                NaN                      NaN                 1.98      
+
+    <strong>R_x</strong>    <strong>J_x</strong>    <strong>Asim_pct</strong>    <strong>Yerlesme_s</strong>     <strong>ess_rad</strong>      <strong>Umax_V</strong>    <strong>REQ03</strong>    <strong>REQ04</strong>    <strong>REQ02</strong>    <strong>REQ05</strong>
+    <strong>___</strong>    <strong>___</strong>    <strong>________</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>______</strong>    <strong>_____</strong>    <strong>_____</strong>    <strong>_____</strong>    <strong>_____</strong>
+
+    0.8    0.8    0.38345       3.6993      0.00081442      12      true     true     true     true 
+    0.8      1    0.32341       3.7988      0.00082996      12      true     true     true     true 
+    0.8    1.2    0.25769       3.8968      0.00085032      12      true     true     true     true 
+      1    0.8    0.35602        3.917      6.0953e-05      12      true     true     true     true 
+      1      1    0.28003       4.0326        4.03e-05      12      true     true     true     true 
+      1    1.2     0.2178       4.1404      2.3423e-05      12      true     true     true     true 
+    1.2    0.8    0.33069       4.1345       0.0010171      12      true     true     true     true 
+    1.2      1     0.2523       4.2597       0.0010061      12      true     true     true     true 
+    1.2    1.2    0.19818       4.3721       0.0009786      12      true     true     true     true 
+
+1/6 bitti: ideal sensor
+2/6 bitti: sadece enkoder
+3/6 bitti: enkoder+gurultu N=1010
+4/6 bitti: enkoder+gurultu N=200
+5/6 bitti: enkoder+gurultu N=50
+6/6 bitti: enkoder+gurultu N=20
+              <strong>Durum</strong>               <strong>Asim_pct</strong>    <strong>Yerlesme_s</strong>      <strong>Vac_V</strong>       <strong>Vac_tepe_V</strong>    <strong>Konum_rms_rad</strong>    <strong>Umax_V</strong>
+    <strong>__________________________</strong>    <strong>________</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>_____________</strong>    <strong>______</strong>
+
+    {'ideal sensor'          }    0.23958       4.0013      0.00085945    0.0028833      1.0496e-05        12  
+    {'sadece enkoder'        }    0.23971       4.0012       0.0010834     0.001876      0.00039602        12  
+    {'enkoder+gurultu N=1010'}    0.23984       4.0021          5.3903       12.008      5.1303e-05        12  
+    {'enkoder+gurultu N=200' }    0.24701       4.0079          1.0386       3.4149       2.101e-05        12  
+    {'enkoder+gurultu N=50'  }    0.28003       4.0326         0.32449       1.0103      2.3882e-05        12  
+    {'enkoder+gurultu N=20'  }    0.35459       4.0757          0.1872       0.5691      4.7602e-05        12  
+
+1/8 bitti: enkoder, komp. kapali
+2/8 bitti: enkoder, e0=0.005
+3/8 bitti: enkoder, e0=0.01
+4/8 bitti: enkoder, e0=0.02
+5/8 bitti: enk+gurultu, komp. kapali
+6/8 bitti: enk+gurultu, e0=0.005
+7/8 bitti: enk+gurultu, e0=0.01
+8/8 bitti: enk+gurultu, e0=0.02
+                <strong>Durum</strong>                <strong>Asim_pct</strong>    <strong>Yerlesme_s</strong>      <strong>Vac_V</strong>      <strong>Vac_tepe_V</strong>    <strong>Ort_hata_rad</strong>    <strong>Max_hata_rad</strong>    <strong>REQ07</strong>
+    <strong>_____________________________</strong>    <strong>________</strong>    <strong>__________</strong>    <strong>_________</strong>    <strong>__________</strong>    <strong>____________</strong>    <strong>____________</strong>    <strong>_____</strong>
+
+    {'enkoder, komp. kapali'    }     0.4506       4.0498        0.11054      0.46671        0.015281           0.023     true 
+    {'enkoder, e0=0.005'        }    0.28017       4.0326        0.13443      0.56041      0.00086389      0.00087162     true 
+    {'enkoder, e0=0.01'         }    0.28018       4.0326      0.0010834     0.001876      0.00024095      0.00054195     true 
+    {'enkoder, e0=0.02'         }    0.28028       4.0326       0.031471      0.35866       0.0010412       0.0011892     true 
+    {'enk+gurultu, komp. kapali'}    0.45053       4.0497        0.25877      0.91871        0.015317        0.023038     true 
+    {'enk+gurultu, e0=0.005'    }    0.28001       4.0326          0.403       1.2341      0.00022641      0.00028518     true 
+    {'enk+gurultu, e0=0.01'     }    0.28003       4.0326        0.32449       1.0103      1.9493e-05      5.6097e-05     true 
+    {'enk+gurultu, e0=0.02'     }    0.28015       4.0326        0.28061       0.8839       0.0013914       0.0015347     true 
+
+
+======================= GEREKSINIM OZETI =======================
+MODEL-A   Surtunmesiz kalici hiz, teoriye bagil hata   1.946e-06  < 0.005    PASS
+MODEL-A2  Durum-uzayi konum egrisi, bagil hata         0.0002829  < 0.005    PASS
+MODEL-B   Coulomb surtunmesi, bagil hata               9.132e-07  < 0.005    PASS
+MODEL-C   Yuk torku girisi ve isareti, bagil hata      1.796e-06  < 0.005    PASS
+MODEL-D   Ic denklemler, kontrolcu zinciri, enkoder          NaN  hepsi PASS PASS
+REQ-01    Hedefe ulasma (yerlesme gerceklesir)             4.033  sonlu      PASS
+REQ-02    Kalici hata (rad)                             4.03e-05  < 0.5      PASS
+REQ-03    Asim (%)                                          0.28  < 5        PASS
+REQ-04    Yerlesme suresi (s)                              4.033  < 5        PASS
+REQ-05    Motor voltaji (V)                                   12  <= 12      PASS
+REQ-06a   9 V bozucuda en buyuk sapma (rad)               0.5133  <= 1       PASS
+REQ-06b   3 V bozucu sonrasi kalici hata (rad)         1.678e-05  < 0.01     PASS
+REQ-06c   9 V bozucuda 0.05 rad bandina donus (s)           4.11  < 5        PASS
+REQ-07a   Voltaj titresimi, enkoder+gurultu (V)           0.3245  < 0.5      PASS
+REQ-07b   Voltaj titresimi, gurultusuz enkoder (V)      0.001083  < 0.5      PASS
+REQ-08    R, J +-%20: en kotu yerlesme (s)                 4.372  REQ02-05   PASS
+ALTYAPI   Testler sonrasi model ayarlari degismedi           NaN  evet       PASS
+-----------------------------------------------------------------
+GENEL SONUC: PASS

@@ -1,0 +1,16 @@
+# Simulink / MATLAB gecici dosyalari (her simulasyonda yeniden olusur)
+work/
+slprj/
+*.slxc
+*.asv
+*.autosave
+*.mex*
+codegen/
+
+# Testlerin ara veri dosyalari (run_sensor_test ve run_encoder_test yeniden uretir)
+results/*.mat
+
+# Isletim sistemi dosyalari
+Thumbs.db
+desktop.ini
+.DS_Store
