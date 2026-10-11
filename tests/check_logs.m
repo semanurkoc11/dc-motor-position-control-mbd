@@ -23,6 +23,7 @@ rf  = g('reference');            pm  = g('Encoder_Quantizer');
 er  = g('Sum');                  pfb = g('PID Controller');
 ff  = g('Friction_Comp');        po  = g('Comp_Sum');
 vd  = g('Voltage_Disturbance');  pd  = g('Sum1');
+es  = g('Controller_Sample');    % ornekli hata (kontrolcunun gordugu)
 
 chk = {
     'Saturation cikisi = motor girisi    ', sat, vin
@@ -37,7 +38,8 @@ chk = {
     'acc = toplam / J                    ', acc, sM/motor.J
     'Cikis konumu = Integrator2          ', pos, th
     'Hata = referans - olculen konum     ', er,  rf - pm
-    'Kompanzasyon = Vc*tanh(e/e0)        ', ff,  ctrl.Vc*tanh(er/ctrl.e0)
+    'Ornekli hata = hata (ornek anlarinda)', es, er
+    'Kompanzasyon = Vc*tanh(e/e0)        ', ff,  ctrl.Vc*tanh(es/ctrl.e0)
     'Kontrol cikisi = PID + kompanzasyon ', po,  pfb + ff
     'Bozucu toplami = kontrol - bozucu   ', pd,  po - vd
     'Saturation = sinirlanmis toplam     ', sat, min(max(pd, -ctrl.Vmax), ctrl.Vmax) };

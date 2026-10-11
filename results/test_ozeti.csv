@@ -4,24 +4,24 @@ MODEL-A2,"Durum-uzayi konum egrisi, bagil hata",0.000282915805761619,< 0.005,PAS
 MODEL-B,"Coulomb surtunmesi, bagil hata",9.1315734855324e-07,< 0.005,PASS
 MODEL-C,"Yuk torku girisi ve isareti, bagil hata",1.79638233980196e-06,< 0.005,PASS
 MODEL-D,"Ic denklemler, kontrolcu zinciri, enkoder",NaN,hepsi PASS,PASS
-MODEL-E,"Yuk altinda tutma voltaji T*R/KT, bagil hata",0.00483099031413678,< 0.01,PASS
-REQ-01,"Hedefe ulasma (yerlesme gerceklesir)",4.03259770655174,sonlu,PASS
-REQ-02,"Kalici hata (rad)",4.03000337030335e-05,< 0.5,PASS
-REQ-03,"Asim (%)",0.280028570087443,< 5,PASS
-REQ-04,"Yerlesme suresi (s)",4.03259770655174,< 5,PASS
-REQ-04w,"En kotu durumda yerlesme suresi (s)",4.67807045002459,< 5,PASS
+MODEL-E,"Yuk altinda tutma voltaji T*R/KT, bagil hata",0.00478050139137071,< 0.01,PASS
+REQ-01,"Hedefe ulasma (yerlesme gerceklesir)",4.03302169690961,sonlu,PASS
+REQ-02,"Kalici hata (rad)",4.18733442870689e-05,< 0.5,PASS
+REQ-03,"Asim (%)",0.283406523789109,< 5,PASS
+REQ-04,"Yerlesme suresi (s)",4.03302169690961,< 5,PASS
+REQ-04w,"En kotu durumda yerlesme suresi (s)",4.67853488392484,< 5,PASS
 REQ-05,"Motor voltaji (V)",12,<= 12,PASS
-REQ-06a,"9 V bozucuda en buyuk sapma (rad)",0.51333717789025,<= 1,PASS
-REQ-06b,"3 V bozucu sonrasi kalici hata (rad)",1.67769513286526e-05,< 0.01,PASS
-REQ-06c,"9 V bozucuda 0.05 rad bandina donus (s)",4.11,< 5,PASS
-REQ-07a,"Voltaj titresimi, enkoder+gurultu (V)",0.324491820042974,< 0.5,PASS
-REQ-07b,"Voltaj titresimi, gurultusuz enkoder (V)",0.00108341040486531,< 0.5,PASS
-REQ-08,"R, J +-%20: en kotu yerlesme (s)",4.37213829904204,REQ02-05,PASS
-REQ-09a,"0.4 N.m yuk, en kotu: maks. sapma (rad)",0.416159056446872,<= 1,PASS
-REQ-09b,"0.4 N.m yuk, en kotu: kalici hata (rad)",0.0036515254850949,< 0.01,PASS
-REQ-09c,"0.4 N.m yuk, en kotu: banda donus (s)",4.408,< 5,PASS
-REQ-10a,"Art arda adimlar: en buyuk asim (%)",0.280028570087453,< 5,PASS
-REQ-10b,"Art arda adimlar: en uzun yerlesme (s)",4.555,< 5,PASS
-REQ-10c,"Tek adima gore yerlesme farki (s)",0.00300000000000011,< 0.05,PASS
-REQ-10d,"Sonraki adimdan once hata (rad)",0.0323151389065144,< 0.05,PASS
+REQ-06a,"9 V bozucuda en buyuk sapma (rad)",0.513038693458803,<= 1,PASS
+REQ-06b,"3 V bozucu sonrasi kalici hata (rad)",1.65968879299303e-05,< 0.01,PASS
+REQ-06c,"9 V bozucuda 0.05 rad bandina donus (s)",4.109,< 5,PASS
+REQ-07a,"Voltaj titresimi, enkoder+gurultu (V)",0.312975160849707,< 0.5,PASS
+REQ-07b,"Voltaj titresimi, gurultusuz enkoder (V)",0.00108341902551232,< 0.5,PASS
+REQ-08,"R, J +-%20: en kotu yerlesme (s)",4.37276730302034,REQ02-05,PASS
+REQ-09a,"0.4 N.m yuk, en kotu: maks. sapma (rad)",0.416189582294052,<= 1,PASS
+REQ-09b,"0.4 N.m yuk, en kotu: kalici hata (rad)",0.00365185364219685,< 0.01,PASS
+REQ-09c,"0.4 N.m yuk, en kotu: banda donus (s)",4.407,< 5,PASS
+REQ-10a,"Art arda adimlar: en buyuk asim (%)",0.283406523789111,< 5,PASS
+REQ-10b,"Art arda adimlar: en uzun yerlesme (s)",4.556,< 5,PASS
+REQ-10c,"Tek adima gore yerlesme farki (s)",0.00300000000000056,< 0.05,PASS
+REQ-10d,"Sonraki adimdan once hata (rad)",0.0322083844161944,< 0.05,PASS
 ALTYAPI,"Testler sonrasi model ayarlari degismedi",NaN,evet,PASS

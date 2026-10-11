@@ -1,4 +1,4 @@
-DC motor konum kontrolu - test raporu (11-Oct-2026 16:38:54)
+DC motor konum kontrolu - test raporu (11-Oct-2026 17:16:04)
 
 A: surtunmesiz           w_teori=1.5152  w_sim=1.5151 rad/s  bagil hata=1.95e-06  PASS
 B: Coulomb surtunmesi    w_teori=0.3030  w_sim=0.3030 rad/s  bagil hata=9.13e-07  PASS
@@ -17,6 +17,7 @@ Mekanik toplami T-F-Coulomb-Yuk      maxhata=0.00e+00  PASS
 acc = toplam / J                     maxhata=3.55e-15  PASS
 Cikis konumu = Integrator2           maxhata=0.00e+00  PASS
 Hata = referans - olculen konum      maxhata=0.00e+00  PASS
+Ornekli hata = hata (ornek anlarinda) maxhata=0.00e+00  PASS
 Kompanzasyon = Vc*tanh(e/e0)         maxhata=0.00e+00  PASS
 Kontrol cikisi = PID + kompanzasyon  maxhata=0.00e+00  PASS
 Bozucu toplami = kontrol - bozucu    maxhata=0.00e+00  PASS
@@ -26,12 +27,12 @@ Umax (motor voltaji) = 12.0000 V  PASS
            <strong>Yontem</strong>           <strong>Asim_pct</strong>    <strong>Yerlesme_s</strong>     <strong>ess_rad</strong>      <strong>Umax_V</strong>    <strong>REQ03</strong>    <strong>REQ04</strong>    <strong>REQ02</strong>    <strong>REQ05</strong>
     <strong>____________________</strong>    <strong>________</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>______</strong>    <strong>_____</strong>    <strong>_____</strong>    <strong>_____</strong>    <strong>_____</strong>
 
-    {'none'            }     80.225       13.335      0.00045151      12      false    false    true     true 
-    {'clamping'        }     1.7518       3.7754      7.1532e-05      12      true     true     true     true 
-    {'back-calculation'}    0.28003       4.0326        4.03e-05      12      true     true     true     true 
+    {'none'            }     80.263        13.34      0.00044492      12      false    false    true     true 
+    {'clamping'        }     1.7548       3.7757      7.2796e-05      12      true     true     true     true 
+    {'back-calculation'}    0.28341        4.033      4.1873e-05      12      true     true     true     true 
 
 En buyuk sapma = 0.103 rad
-Toparlanma (sapmanin %2 bandi) = 7.24 s
+Toparlanma (sapmanin %2 bandi) = 7.23 s
 Final konum hatasi (son 5 s ort.) = 0.00002 rad
 pid_out_V (son 5 s ort.) = 3.001 V (beklenen ~3 V)
 max|pid_out - pid_minus_dist - 3| = 0.0000 V (bozucu dogru mu?)
@@ -39,24 +40,24 @@ max|pid_minus_dist - motor_voltage| = 0.0000 V (dis doyma etkisi)
     <strong>Bozucu_V</strong>    <strong>MaxSapma_rad</strong>    <strong>FinalHata_rad</strong>    <strong>Toparlanma_0.05_rad_s</strong>    <strong>Toparlanma_0.01_rad_s</strong>    <strong>DisDoymaFarki_V</strong>
     <strong>________</strong>    <strong>____________</strong>    <strong>_____________</strong>    <strong>_____________________</strong>    <strong>_____________________</strong>    <strong>_______________</strong>
 
-        3         0.10296         1.357e-05              4.084                    5.724                    0      
-        6         0.30523        3.1714e-05              3.906                    5.401                    0      
-        9         0.51334         3.882e-05               4.11                    5.578                    0      
-       11         0.65446         4.153e-05               4.24                    5.699                    0      
-       13          1.2994            1.2994                NaN                      NaN                 1.98      
+        3         0.10313        1.3074e-05              4.076                    5.715                     0     
+        6         0.30509        3.2828e-05              3.906                    5.399                     0     
+        9         0.51304         3.939e-05              4.109                    5.575                     0     
+       11         0.65502        4.3762e-05              4.238                    5.695                     0     
+       13          1.3069            1.3069                NaN                      NaN                1.9648     
 
     <strong>R_x</strong>    <strong>J_x</strong>    <strong>Asim_pct</strong>    <strong>Yerlesme_s</strong>     <strong>ess_rad</strong>      <strong>Umax_V</strong>    <strong>REQ03</strong>    <strong>REQ04</strong>    <strong>REQ02</strong>    <strong>REQ05</strong>
     <strong>___</strong>    <strong>___</strong>    <strong>________</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>______</strong>    <strong>_____</strong>    <strong>_____</strong>    <strong>_____</strong>    <strong>_____</strong>
 
-    0.8    0.8    0.38345       3.6993      0.00081442      12      true     true     true     true 
-    0.8      1    0.32341       3.7988      0.00082996      12      true     true     true     true 
-    0.8    1.2    0.25769       3.8968      0.00085032      12      true     true     true     true 
-      1    0.8    0.35602        3.917      6.0953e-05      12      true     true     true     true 
-      1      1    0.28003       4.0326        4.03e-05      12      true     true     true     true 
-      1    1.2     0.2178       4.1404      2.3423e-05      12      true     true     true     true 
-    1.2    0.8    0.33069       4.1345       0.0010171      12      true     true     true     true 
-    1.2      1     0.2523       4.2597       0.0010061      12      true     true     true     true 
-    1.2    1.2    0.19818       4.3721       0.0009786      12      true     true     true     true 
+    0.8    0.8    0.38706       3.6997      0.00081161      12      true     true     true     true 
+    0.8      1    0.32703        3.799      0.00082894      12      true     true     true     true 
+    0.8    1.2    0.26124       3.8972      0.00084978      12      true     true     true     true 
+      1    0.8    0.35947       3.9173      6.2715e-05      12      true     true     true     true 
+      1      1    0.28341        4.033      4.1873e-05      12      true     true     true     true 
+      1    1.2    0.22044        4.141      2.4956e-05      12      true     true     true     true 
+    1.2    0.8    0.33403       4.1348       0.0010194      12      true     true     true     true 
+    1.2      1      0.255       4.2603        0.001007      12      true     true     true     true 
+    1.2    1.2    0.20066       4.3728      0.00097855      12      true     true     true     true 
 
 1/6 bitti: ideal sensor
 2/6 bitti: sadece enkoder
@@ -67,12 +68,12 @@ max|pid_minus_dist - motor_voltage| = 0.0000 V (dis doyma etkisi)
               <strong>Durum</strong>               <strong>Asim_pct</strong>    <strong>Yerlesme_s</strong>      <strong>Vac_V</strong>       <strong>Vac_tepe_V</strong>    <strong>Konum_rms_rad</strong>    <strong>Umax_V</strong>
     <strong>__________________________</strong>    <strong>________</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>__________</strong>    <strong>_____________</strong>    <strong>______</strong>
 
-    {'ideal sensor'          }    0.23958       4.0013      0.00085945    0.0028833      1.0496e-05        12  
-    {'sadece enkoder'        }    0.23971       4.0012       0.0010834     0.001876      0.00039602        12  
-    {'enkoder+gurultu N=1010'}    0.23984       4.0021          5.3903       12.008      5.1303e-05        12  
-    {'enkoder+gurultu N=200' }    0.24701       4.0079          1.0386       3.4149       2.101e-05        12  
-    {'enkoder+gurultu N=50'  }    0.28003       4.0326         0.32449       1.0103      2.3882e-05        12  
-    {'enkoder+gurultu N=20'  }    0.35459       4.0757          0.1872       0.5691      4.7602e-05        12  
+    {'ideal sensor'          }    0.24272       4.0015      0.00085106    0.0028545      1.0972e-05        12  
+    {'sadece enkoder'        }    0.24272       4.0016       0.0010834     0.001876      0.00038561        12  
+    {'enkoder+gurultu N=1010'}    0.24258       4.0021          2.7075       9.0552       2.263e-05        12  
+    {'enkoder+gurultu N=200' }    0.24995       4.0084         0.87717       2.8809      2.0682e-05        12  
+    {'enkoder+gurultu N=50'  }    0.28341        4.033         0.31298      0.97282      2.4493e-05        12  
+    {'enkoder+gurultu N=20'  }    0.35813       4.0758         0.18493      0.56285      5.0479e-05        12  
 
 1/8 bitti: enkoder, komp. kapali
 2/8 bitti: enkoder, e0=0.005
@@ -85,14 +86,14 @@ max|pid_minus_dist - motor_voltage| = 0.0000 V (dis doyma etkisi)
                 <strong>Durum</strong>                <strong>Asim_pct</strong>    <strong>Yerlesme_s</strong>      <strong>Vac_V</strong>      <strong>Vac_tepe_V</strong>    <strong>Ort_hata_rad</strong>    <strong>Max_hata_rad</strong>    <strong>REQ07</strong>
     <strong>_____________________________</strong>    <strong>________</strong>    <strong>__________</strong>    <strong>_________</strong>    <strong>__________</strong>    <strong>____________</strong>    <strong>____________</strong>    <strong>_____</strong>
 
-    {'enkoder, komp. kapali'    }     0.4506       4.0498        0.11054      0.46671        0.015281           0.023     true 
-    {'enkoder, e0=0.005'        }    0.28017       4.0326        0.13443      0.56041      0.00086389      0.00087162     true 
-    {'enkoder, e0=0.01'         }    0.28018       4.0326      0.0010834     0.001876      0.00024095      0.00054195     true 
-    {'enkoder, e0=0.02'         }    0.28028       4.0326       0.031471      0.35866       0.0010412       0.0011892     true 
-    {'enk+gurultu, komp. kapali'}    0.45053       4.0497        0.25877      0.91871        0.015317        0.023038     true 
-    {'enk+gurultu, e0=0.005'    }    0.28001       4.0326          0.403       1.2341      0.00022641      0.00028518     true 
-    {'enk+gurultu, e0=0.01'     }    0.28003       4.0326        0.32449       1.0103      1.9493e-05      5.6097e-05     true 
-    {'enk+gurultu, e0=0.02'     }    0.28015       4.0326        0.28061       0.8839       0.0013914       0.0015347     true 
+    {'enkoder, komp. kapali'    }    0.45409       4.0502         0.1102       0.4476        0.015282        0.023013     true 
+    {'enkoder, e0=0.005'        }    0.28365        4.033        0.13152      0.54463      0.00086265      0.00087175     true 
+    {'enkoder, e0=0.01'         }    0.28367        4.033      0.0010834     0.001876      0.00023533      0.00053393     true 
+    {'enkoder, e0=0.02'         }    0.28375        4.033       0.029629      0.35655       0.0010481       0.0011959     true 
+    {'enk+gurultu, komp. kapali'}    0.45397       4.0501        0.24889      0.89457        0.015319        0.023055     true 
+    {'enk+gurultu, e0=0.005'    }    0.28341        4.033        0.39245       1.1991       0.0002248      0.00028674     true 
+    {'enk+gurultu, e0=0.01'     }    0.28341        4.033        0.31298      0.97282      1.9941e-05      5.5988e-05     true 
+    {'enk+gurultu, e0=0.02'     }    0.28349        4.033        0.27054      0.85234       0.0013923       0.0015356     true 
 
 1/6 bitti: 0.1 N.m
 2/6 bitti: 0.2 N.m
@@ -103,12 +104,12 @@ max|pid_minus_dist - motor_voltage| = 0.0000 V (dis doyma etkisi)
     <strong>Yuk_Nm</strong>    <strong>MaxSapma_rad</strong>    <strong>KaliciHata_rad</strong>    <strong>Toparlanma_0p05_s</strong>    <strong>Vmotor_olculen_V</strong>    <strong>Vmotor_teori_V</strong>
     <strong>______</strong>    <strong>____________</strong>    <strong>______________</strong>    <strong>_________________</strong>    <strong>________________</strong>    <strong>______________</strong>
 
-     0.1        0.034895         0.0010825                0               1.6077               1.6     
-     0.2         0.11965         7.415e-06            3.848               3.2005               3.2     
-     0.4           0.334        3.1055e-05            3.862               6.4002               6.4     
-     0.6         0.55679        3.9662e-05            4.085                  9.6               9.6     
-     0.7         0.81167           0.42241              NaN                   12              11.2     
-     0.8          2.6498            2.5918              NaN                   12              12.8     
+     0.1        0.035108         0.0010706                0               1.6076               1.6     
+     0.2         0.11998        6.4621e-06             3.84               3.2005               3.2     
+     0.4         0.33378        3.2037e-05            3.862               6.4001               6.4     
+     0.6         0.55656        4.0033e-05            4.084                  9.6               9.6     
+     0.7         0.81838           0.42871              NaN                   12              11.2     
+     0.8          2.6623            2.6043              NaN                   12              12.8     
 
  1/16 bitti: Nominal                  0.3 N.m
  2/16 bitti: Nominal                  0.4 N.m
@@ -129,22 +130,22 @@ max|pid_minus_dist - motor_voltage| = 0.0000 V (dis doyma etkisi)
              <strong>Kosul</strong>              <strong>Yuk_Nm</strong>    <strong>Kapasite_hesap_Nm</strong>    <strong>MaxSapma_rad</strong>    <strong>KaliciHata_rad</strong>    <strong>Toparlanma_0p05_s</strong>    <strong>Yerlesme_s</strong>    <strong>REQ09</strong>
     <strong>________________________</strong>    <strong>______</strong>    <strong>_________________</strong>    <strong>____________</strong>    <strong>______________</strong>    <strong>_________________</strong>    <strong>__________</strong>    <strong>_____</strong>
 
-    "Nominal"                    0.3               0.7           0.22403         2.5001e-05            3.771            4.0326      true 
-    "Nominal"                    0.4               0.7             0.334         3.1055e-05            3.862            4.0326      true 
-    "Nominal"                    0.5               0.7           0.44508         3.7917e-05            3.974            4.0326      true 
-    "Nominal"                    0.6               0.7           0.55679         3.9662e-05            4.085            4.0326      true 
-    "Sicak motor"                0.3             0.575           0.29572         0.00081785            3.938            4.2597      true 
-    "Sicak motor"                0.4             0.575           0.43238         0.00082552            4.025            4.2597      true 
-    "Sicak motor"                0.5             0.575           0.56981         0.00083617            4.142            4.2597      true 
-    "Sicak motor"                0.6             0.575           0.81787            0.72688              NaN            4.2597      false
-    "Sicak + 11 V"               0.3           0.52292           0.29495         0.00081835            3.937            4.5196      true 
-    "Sicak + 11 V"               0.4           0.52292           0.43168         0.00082515            4.025            4.5196      true 
-    "Sicak + 11 V"               0.5           0.52292           0.56948         0.00084848            4.097            4.5196      true 
-    "Sicak + 11 V"               0.6           0.52292            1.3438             1.3288              NaN            4.5196      false
-    "Sicak + 11 V + Tc x1.5"     0.3           0.49792           0.28055          0.0036515            4.408            4.6781      true 
-    "Sicak + 11 V + Tc x1.5"     0.4           0.49792           0.41616           0.003623            4.338            4.6781      true 
-    "Sicak + 11 V + Tc x1.5"     0.5           0.49792           0.55298            0.23254              NaN            4.6781      false
-    "Sicak + 11 V + Tc x1.5"     0.6           0.49792            1.0522             1.0428              NaN            4.6781      false
+    "Nominal"                    0.3               0.7           0.22411         2.5868e-05             3.77             4.033      true 
+    "Nominal"                    0.4               0.7           0.33378         3.2037e-05            3.862             4.033      true 
+    "Nominal"                    0.5               0.7           0.44479         3.8925e-05            3.974             4.033      true 
+    "Nominal"                    0.6               0.7           0.55656         4.0033e-05            4.084             4.033      true 
+    "Sicak motor"                0.3             0.575           0.29563         0.00081808            3.937            4.2603      true 
+    "Sicak motor"                0.4             0.575           0.43237         0.00082589            4.024            4.2603      true 
+    "Sicak motor"                0.5             0.575            0.5697         0.00083616            4.141            4.2603      true 
+    "Sicak motor"                0.6             0.575            0.8229            0.73192              NaN            4.2603      false
+    "Sicak + 11 V"               0.3           0.52292           0.29492         0.00081801            3.937            4.5201      true 
+    "Sicak + 11 V"               0.4           0.52292           0.43155         0.00082591            4.024            4.5201      true 
+    "Sicak + 11 V"               0.5           0.52292           0.56962         0.00084638            4.096            4.5201      true 
+    "Sicak + 11 V"               0.6           0.52292             1.352              1.337              NaN            4.5201      false
+    "Sicak + 11 V + Tc x1.5"     0.3           0.49792           0.28069          0.0036519            4.407            4.6785      true 
+    "Sicak + 11 V + Tc x1.5"     0.4           0.49792           0.41619          0.0036234            4.337            4.6785      true 
+    "Sicak + 11 V + Tc x1.5"     0.5           0.49792           0.55306            0.23262              NaN            4.6785      false
+    "Sicak + 11 V + Tc x1.5"     0.6           0.49792              1.06             1.0506              NaN            4.6785      false
 
 Referans profili [zaman konum]:
      0    50
@@ -160,9 +161,9 @@ Referans profili [zaman konum]:
     <strong>Baslangic_rad</strong>    <strong>Hedef_rad</strong>    <strong>Adim_rad</strong>    <strong>Asim_pct</strong>    <strong>Yerlesme_s</strong>    <strong>KaliciHata_rad</strong>    <strong>Yerlesme_tek_adim_s</strong>    <strong>Fark_s</strong>
     <strong>_____________</strong>    <strong>_________</strong>    <strong>________</strong>    <strong>________</strong>    <strong>__________</strong>    <strong>______________</strong>    <strong>___________________</strong>    <strong>______</strong>
 
-          0             50           50       0.28003       4.032           0.032315             4.032                0
-         50             20          -30       0.26119       3.032           0.018075             3.035           -0.003
-         20             80           60       0.26458       4.555         0.00028505             4.557           -0.002
+          0             50           50       0.28341       4.033           0.032208             4.033                0
+         50             20          -30       0.26384       3.033           0.017959             3.036           -0.003
+         20             80           60       0.26776       4.556         0.00027797             4.557           -0.001
 
 Umax = 12.0000 V
 
@@ -172,26 +173,26 @@ MODEL-A2  Durum-uzayi konum egrisi, bagil hata         0.0002829  < 0.005    PAS
 MODEL-B   Coulomb surtunmesi, bagil hata               9.132e-07  < 0.005    PASS
 MODEL-C   Yuk torku girisi ve isareti, bagil hata      1.796e-06  < 0.005    PASS
 MODEL-D   Ic denklemler, kontrolcu zinciri, enkoder          NaN  hepsi PASS PASS
-MODEL-E   Yuk altinda tutma voltaji T*R/KT, bagil hata   0.004831  < 0.01     PASS
+MODEL-E   Yuk altinda tutma voltaji T*R/KT, bagil hata   0.004781  < 0.01     PASS
 REQ-01    Hedefe ulasma (yerlesme gerceklesir)             4.033  sonlu      PASS
-REQ-02    Kalici hata (rad)                             4.03e-05  < 0.5      PASS
-REQ-03    Asim (%)                                          0.28  < 5        PASS
+REQ-02    Kalici hata (rad)                            4.187e-05  < 0.5      PASS
+REQ-03    Asim (%)                                        0.2834  < 5        PASS
 REQ-04    Yerlesme suresi (s)                              4.033  < 5        PASS
-REQ-04w   En kotu durumda yerlesme suresi (s)              4.678  < 5        PASS
+REQ-04w   En kotu durumda yerlesme suresi (s)              4.679  < 5        PASS
 REQ-05    Motor voltaji (V)                                   12  <= 12      PASS
-REQ-06a   9 V bozucuda en buyuk sapma (rad)               0.5133  <= 1       PASS
-REQ-06b   3 V bozucu sonrasi kalici hata (rad)         1.678e-05  < 0.01     PASS
-REQ-06c   9 V bozucuda 0.05 rad bandina donus (s)           4.11  < 5        PASS
-REQ-07a   Voltaj titresimi, enkoder+gurultu (V)           0.3245  < 0.5      PASS
+REQ-06a   9 V bozucuda en buyuk sapma (rad)                0.513  <= 1       PASS
+REQ-06b   3 V bozucu sonrasi kalici hata (rad)          1.66e-05  < 0.01     PASS
+REQ-06c   9 V bozucuda 0.05 rad bandina donus (s)          4.109  < 5        PASS
+REQ-07a   Voltaj titresimi, enkoder+gurultu (V)            0.313  < 0.5      PASS
 REQ-07b   Voltaj titresimi, gurultusuz enkoder (V)      0.001083  < 0.5      PASS
-REQ-08    R, J +-%20: en kotu yerlesme (s)                 4.372  REQ02-05   PASS
+REQ-08    R, J +-%20: en kotu yerlesme (s)                 4.373  REQ02-05   PASS
 REQ-09a   0.4 N.m yuk, en kotu: maks. sapma (rad)         0.4162  <= 1       PASS
 REQ-09b   0.4 N.m yuk, en kotu: kalici hata (rad)       0.003652  < 0.01     PASS
-REQ-09c   0.4 N.m yuk, en kotu: banda donus (s)            4.408  < 5        PASS
-REQ-10a   Art arda adimlar: en buyuk asim (%)               0.28  < 5        PASS
-REQ-10b   Art arda adimlar: en uzun yerlesme (s)           4.555  < 5        PASS
+REQ-09c   0.4 N.m yuk, en kotu: banda donus (s)            4.407  < 5        PASS
+REQ-10a   Art arda adimlar: en buyuk asim (%)             0.2834  < 5        PASS
+REQ-10b   Art arda adimlar: en uzun yerlesme (s)           4.556  < 5        PASS
 REQ-10c   Tek adima gore yerlesme farki (s)                0.003  < 0.05     PASS
-REQ-10d   Sonraki adimdan once hata (rad)                0.03232  < 0.05     PASS
+REQ-10d   Sonraki adimdan once hata (rad)                0.03221  < 0.05     PASS
 ALTYAPI   Testler sonrasi model ayarlari degismedi           NaN  evet       PASS
 -----------------------------------------------------------------
 GENEL SONUC: PASS

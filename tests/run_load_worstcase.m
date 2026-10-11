@@ -2,6 +2,8 @@
 % Kosullar yalnizca MOTORA ve BESLEMEYE uygulanir; kontrolcu nominal degerlerle kalir.
 % (Gercekte kontrolcu motorun isindigini ya da beslemenin dustugunu bilmez.)
 % Modele dokunmaz: tum degisiklikler SimulationInput ile yalnizca o kosu icin verilir.
+% Cizimler acik figur/eksen tutamaklariyla yapilir: test surerken baska pencereye
+% tiklamak grafigi bozmaz.
 model = 'dc_motor_position_control';
 load_system(model);
 init_motor;
@@ -19,11 +21,11 @@ yukler = [0.3 0.4 0.5 0.6];                      % N.m
 
 nK = size(K, 1);  nY = numel(yukler);
 S = nan(nK*nY, 7);  ad = strings(nK*nY, 1);  n = 0;
-figure('Position', [100 100 1100 700]);
-tl = tiledlayout(2, 2, 'TileSpacing', 'compact');
+f  = figure('Position', [100 100 1100 700]);
+tl = tiledlayout(f, 2, 2, 'TileSpacing', 'compact');
 for k = 1:nK
     kap = motor.KT*K{k,3} / (K{k,2}*motor.R) - K{k,4}*motor.Tc;   % el hesabi kapasite
-    nexttile; hold on; grid on;
+    ax = nexttile(tl);  hold(ax, 'on');  grid(ax, 'on');
     for y = yukler
         n = n + 1;
         in = Simulink.SimulationInput(model);
@@ -46,16 +48,17 @@ for k = 1:nK
         S(n,:) = [y, kap, max(abs(e(t >= t_d))), abs(mean(e(t >= 25))), ...
             recov(t, e, 0.05, t_d), St.SettlingTime, 0];
         S(n,7) = S(n,3) <= 1 && S(n,4) < 0.01 && S(n,5) < 5;    % REQ-09 a+b+c (NaN -> FAIL)
-        plot(t, x, 'DisplayName', sprintf('%.1f N.m', y));
+        plot(ax, t, x, 'DisplayName', sprintf('%.1f N.m', y));
         fprintf('%2d/%d bitti: %-24s %.1f N.m\n', n, nK*nY, K{k,1}, y);
     end
-    yline(ref, 'k--', 'HandleVisibility', 'off');  xline(t_d, 'r:', 'HandleVisibility', 'off');
-    xlim([8 30]);  ylim([ref-3 ref+0.5]);  legend('Location', 'southeast');
-    title(sprintf('%s (kapasite = %.3f N.m)', K{k,1}, kap), 'FontWeight', 'normal');
+    yline(ax, ref, 'k--', 'HandleVisibility', 'off');
+    xline(ax, t_d, 'r:', 'HandleVisibility', 'off');
+    xlim(ax, [8 30]);  ylim(ax, [ref-3 ref+0.5]);  legend(ax, 'Location', 'southeast');
+    title(ax, sprintf('%s (kapasite = %.3f N.m)', K{k,1}, kap), 'FontWeight', 'normal');
 end
 title(tl, 'Yuk torku: nominal ve en kotu durum kosullari');
 xlabel(tl, 'Zaman (s)');  ylabel(tl, 'Konum (rad)');
-exportgraphics(gcf, fullfile('results', 'yuk_en_kotu_durum.png'), 'Resolution', 200);
+exportgraphics(f, fullfile('results', 'yuk_en_kotu_durum.png'), 'Resolution', 200);
 
 T = array2table(S, 'VariableNames', {'Yuk_Nm', 'Kapasite_hesap_Nm', 'MaxSapma_rad', ...
     'KaliciHata_rad', 'Toparlanma_0p05_s', 'Yerlesme_s', 'REQ09'});

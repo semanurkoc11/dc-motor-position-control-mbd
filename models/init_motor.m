@@ -26,7 +26,8 @@ ctrl.Kp   = 11.2299151129167;
 ctrl.Ki   = 7.23044369863269;
 ctrl.Kd   = 4.16930526092153;
 ctrl.N    = 50;      % turev filtresi (run_sensor_test ile secildi)
-ctrl.Vmax = 12;      % V, surucu/besleme siniri
+ctrl.Vmax = 12;  % V, surucu/besleme siniri
+ctrl.Ts   = 0.001;   % s, kontrolcu ornekleme suresi (1 kHz)
 % --- Referans profili ('reference' blogu, From Workspace) ---
 % Satirlar: [zaman_s  konum_rad]. Ayni zaman iki kez yazilirsa o anda basamak olur.
 ref_prof = [0 50; 1 50];   % varsayilan: t=0'dan itibaren sabit 50 rad (v1.0 davranisi)
