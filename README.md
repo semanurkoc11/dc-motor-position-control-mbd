@@ -206,6 +206,32 @@ Worst case for REQ-04w and REQ-09: winding resistance +20 % (hot motor), supply 
 The tightest margins are REQ-04w (0.32 s), REQ-10d (0.018 rad) and REQ-09c (0.59 s). Settling time is
 limited by the motor's top speed at 12 V, so controller tuning has little influence on it.
 
+### Where the limits come from
+
+There is no customer specification in this project, so each limit was set from one of four sources:
+a physical limit, a common control-engineering convention, the scale of the system itself (move size,
+encoder resolution, noise level), or an analysis done in this project. In a real project these values
+would flow down from system requirements.
+
+| Limit | Source | Rationale |
+|---|---|---|
+| REQ-05: motor voltage ≤ 12 V | Physical limit | Supply voltage. |
+| REQ-04, 04w: settling < 5 s | Physical limit | At 12 V the motor tops out at ≈ 17 rad/s, so 50 rad takes at least ≈ 3 s plus acceleration and braking. 5 s leaves room above that floor without being so loose that it measures nothing. |
+| 2 % settling band | Convention | The tighter of the two common textbook bands (2 % and 5 %). |
+| REQ-03, 10a: overshoot < 5 % | Convention | Corresponds to a damping ratio of ζ ≈ 0.7 in a second-order system, the usual compromise between speed and oscillation. In position control, overshoot means passing the target (end stops, valves). |
+| REQ-07: ripple < 0.5 V rms, peak < 1.5 V | Engineering judgement | About 4 % of the supply; below this, ripple causes little heating or audible noise. Not taken from a datasheet. |
+| REQ-08: R and J ±20 % | Convention | A common robustness range for manufacturing tolerance and temperature drift of motor parameters. |
+| REQ-06a, 09a: deviation ≤ 1 rad | System scale | 2 % of the 50 rad move, the same as the settling band. |
+| REQ-06b, 09b: steady-state error < 0.01 rad | System scale | About 6.5 encoder counts; a much tighter limit would fall below what the sensor can meaningfully resolve. |
+| REQ-06c, 09c, 10d: ±0.05 rad band, < 5 s | System scale | About 33 encoder counts and 50× the noise level, so noise cannot trip it. 5 s matches REQ-04: recovery should be no slower than a step. |
+| REQ-02: steady-state error < 0.5 rad | System scale | 1 % of the move; the first, loose v1.0 limit. Precision is measured by REQ-06b and 09b. |
+| REQ-09: load 0.4 N·m | Analysis | About 20 % below the worst-case capacity of 0.498 N·m (see [Load torque and worst-case analysis](#load-torque-and-worst-case-analysis)). |
+| REQ-10c: difference < 0.05 s | Analysis | About 1 % of the settling time, i.e. no measurable carry-over between moves. |
+| REQ-11a: Ts ≤ 10 ms; REQ-11b: ≥ 50 ms | Analysis | Set after the sweep found the boundary between 100 and 200 ms: ten times below it for the commitment, half the measured value as a warning line. |
+
+Only REQ-04w is tight (0.32 s margin). The looser limits do not drive the design; they guard against
+regressions.
+
 | Disturbance sweep | Parameter sweep (R, J ±20 %) |
 |---|---|
 | ![Disturbance sweep](results/bozucu_taramasi.png) | ![Parameter sweep](results/param_taramasi.png) |

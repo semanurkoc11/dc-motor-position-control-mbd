@@ -84,6 +84,13 @@ grafikler. Tüm parametreler tek dosyada: `models/init_motor.m`.
 En kötü koşul (REQ-04w, REQ-09): sargı direnci +%20 (sıcak motor), besleme 11 V, Coulomb sürtünmesi ×1.5.
 En dar paylar: REQ-04w (0.32 s), REQ-10d (0.018 rad) ve REQ-09c (0.59 s).
 
+**Sınırlar nereden geliyor:** Projede müşteri gereksinimi olmadığı için her sınır dört kaynaktan birine
+dayanıyor: fiziksel limit (12 V besleme; 5 s, çünkü 50 rad tam hızda bile yaklaşık 3 s sürüyor), yaygın
+kabul (%5 aşım, ζ ≈ 0.7'ye karşılık geliyor; %2 yerleşme bandı; parametrelerde ±%20), sistemin ölçeği
+(1 rad = hareketin %2'si; 0.01 rad ≈ 6.5 enkoder adımı; ±0.05 rad ≈ 33 adım, gürültünün 50 katı) ve
+analiz (0.4 N·m, en kötü kapasitenin yaklaşık %20 altı; 10 ms, bulunan örnekleme sınırının 10 kat gerisi).
+Her sınırın ayrıntılı gerekçesi README.md'deki "Where the limits come from" tablosunda.
+
 ---
 
 ## Tasarım kararları
