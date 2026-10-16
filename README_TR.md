@@ -184,6 +184,11 @@ taahhüt 10 ms (sınırın 10 kat gerisi).
   parametre analizi, Simulink Test / Requirements Toolbox, Model Advisor, kod üretimi ve MIL–SIL
   karşılaştırmalı test.
 
+## Yapay Zeka Kullanımı
+
+Bu proje sürecinde yapay zeka araçları bir eğitmen (tutor) ve gözden geçirici (reviewer) olarak kullanılmıştır. Yapay zeka; sorular ve ipuçlarıyla iş akışına rehberlik etmiş, modelimi ve betiklerimi mantık hatalarına karşı (sinyal akışı, anti-windup, sensör gürültüsü, metrik tanımları) gözden geçirmiş, ayrıca dosyaların düzenlenmesine ve dokümantasyon taslağının yazılmasına yardımcı olmuştur. Sürtünme telafisi ve otomatik test betikleri dahil olmak üzere bazı kısımlarda, yapay zekanın (Claude, Gemini) önerdiği çözümleri inceledim ve bunları kullanmadan önce mantığını adım adım çalıştım.
+
+Tüm simülasyonlar MATLAB/Simulink ortamında çalıştırılmış ve sonuçlar yukarıda açıklandığı gibi bağımsız el hesaplarıyla kontrol edilmiştir. Bu repodaki her bloğun ve betiğin mantığını açıklayabilirim.
 ## Lisans
 
 MIT (bkz. `LICENSE`).

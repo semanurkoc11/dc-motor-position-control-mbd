@@ -515,6 +515,11 @@ realistic. They are listed here so the numbers above can be interpreted correctl
 An intermediate snapshot (sensor added, N = 50, before friction) was lost while reorganising the
 folders; the current model supersedes it.
 
+## AI usage
+
+AI tools were used as a tutor and reviewer during this project. AI guided the workflow with questions and hints, reviewed my model and scripts for logic errors (signal flow, anti-windup, sensor noise, metric definitions), and helped format the files and draft the documentation. For some parts, including the friction compensation and the automated test scripts, I studied AI-suggested solutions (Claude, Gemini) and worked through the logic step by step before using them.
+
+All simulations were run in MATLAB/Simulink, and results were checked against independent hand calculations as described above. I can explain the logic of every block and script in this repository.
 ## License
 
 MIT (see `LICENSE`).
